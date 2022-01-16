@@ -15,7 +15,7 @@ get_header();
     while (have_posts()) {
         the_post();
 
-        get_template_part('partials/posts/content-excerpt');
+        get_template_part('partials/posts/content', 'excerpt');
 
     }
 }
