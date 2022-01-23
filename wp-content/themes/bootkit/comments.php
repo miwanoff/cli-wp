@@ -35,13 +35,15 @@
 ?>
     </div>
 </div>
-
+<?php
+if (have_comments()) {?>
+<h5 class="comments-title"><span><?php comments_number();?></span></h5>
 <!-- Comments List -->
 
 <?php
 
-foreach ($comments as $comment) {
-    ?>
+    foreach ($comments as $comment) {
+        ?>
 <div class="media mb-4">
     <div class="comment-meta">
         <div class="comment-author vcard">
@@ -52,16 +54,20 @@ foreach ($comments as $comment) {
     </div>
     <div class="comment-content clearfix">
         <div class="comment-author">
-            <?php comment_author();?>
+            <h5 class="mt-0"> <?php comment_author();?></h5>
             <span><?php comment_date();?></span>
         </div>
         <div class="media-body">
             <?php comment_text();?>
         </div>
+
     </div>
 </div>
 <?php
 }
-the_comments_pagination();
+    the_comments_pagination();
+    ?>
+<?php
+}
 ?>
 <!-- .commentlist end -->
