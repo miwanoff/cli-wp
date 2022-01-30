@@ -1,6 +1,7 @@
 <?php
 /*
  * Template Name: Full Width Page
+ * Template post type: post, page, movies
  */
 
 get_header("v2");?>
