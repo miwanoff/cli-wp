@@ -1,6 +1,6 @@
 <?php
 /*
- * Template Name: Full Width Page
+ * Template Name:Left Column Page
  */
 
 get_header("v2");?>
