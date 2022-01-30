@@ -27,7 +27,7 @@ edit_post_link();
     <div class="row">
 
         <!-- Post Content Column -->
-        <?php $query = new WP_Query(['category_name' => 'News']);?>
+        <?php $query = new WP_Query(['category_name' => 'news']);?>
         <?php $query->query_posts('showposts=8');?>
         <?php while ($query->have_posts()) {$query->the_post();?>
         <?php if (has_post_thumbnail()) {?>
