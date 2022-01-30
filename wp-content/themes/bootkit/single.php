@@ -146,10 +146,30 @@ if (has_post_thumbnail()) {
     </div>
     <!-- /.row -->
     <hr>
+    <h5>Post meta data:</h5>
+    <div class="row">
+        <div class="col-md-8">
+            <?php
+// the_meta();
 
+$arr = get_post_custom();
+foreach ($arr as $key => $fields) {
+    if (!is_protected_meta($key, 'post')) {
+        print_r("<strong>{$key}</strong> :");
+        foreach ($fields as $field) {
+            print_r($field . " ");
+        }
+        echo "<br>";
+    }
+}
+?>
+        </div>
+    </div>
 
 </div>
 <!-- /.container -->
+
+
 <?php
 get_footer();
 ?>

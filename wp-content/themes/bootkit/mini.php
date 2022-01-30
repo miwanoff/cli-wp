@@ -32,6 +32,7 @@ get_header("v2");?>
                         <a href="<?php the_permalink();?>" rel="bookmark"><?php the_title();?></a>
                     </p>
                 </div>
+                <?php /*  the_meta();*/?>
             </div>
         </div>
         <?php }?>
