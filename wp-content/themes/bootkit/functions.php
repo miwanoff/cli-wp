@@ -11,6 +11,7 @@ include get_theme_file_path('includes/taxonomies.php');
 include get_theme_file_path('includes/custom-post-types.php');
 include get_theme_file_path('includes/custom-fields.php');
 include get_theme_file_path('includes/theme-customizer.php');
+include get_theme_file_path('includes/customizer/social.php');
 
 // Hooks
 add_action('wp_enqueue_scripts', 'bootkit_enqueue');
