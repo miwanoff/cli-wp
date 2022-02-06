@@ -42,6 +42,11 @@ if (has_nav_menu('primary')) {
 ?>
             </div>
         </div>
+        <?php $text_value = get_theme_mod('al-logo', 'logo');?>
+        <div class="kirki"
+            style="font-weight:bold; border: 3px gray solid; padding: 5px; border-radius:5px; display:inline-block; color: gray;">
+            <?php echo $text_value; ?>
+        </div>
 
     </nav>
 
