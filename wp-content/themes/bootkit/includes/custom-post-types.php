@@ -14,7 +14,7 @@ function bootkit_register_post_type_init()
         'not_found' => 'Movies not found.',
         'not_found_in_trash' => 'Movies not found in trash.',
         'menu_name' => 'Movies',
-    );
+    );                                                                                                                                                                                                                                                                       
     $args = array(
         'labels' => $labels,
         'public' => true, //for all users - true
