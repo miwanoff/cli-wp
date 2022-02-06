@@ -42,3 +42,20 @@ Kirki::add_field('sydney2021', [
         ],
     ],
 ]);
+
+Kirki::add_field('sydney2021', [
+    'type' => 'color',
+    'settings' => 'color_setting',
+    'label' => __('Color', 'text-domain'),
+    'description' => esc_html__('Some cool description', 'text-domain'),
+    'section' => 'section_id',
+    'default' => '#000',
+    'output' => [
+        [
+            'element' => 'body',
+            'property' => 'color',
+            'suffix' => '!important',
+
+        ],
+    ],
+]);
