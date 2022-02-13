@@ -14,7 +14,7 @@
         <?php sydney_2021_post_thumbnail();?>
     </div>
     <div class="contentText">
-        <h5 class="titleArticle"><?php the_title();?></h5>
+        <h5 class="titleArticle"><a href="<?php the_permalink()?>"> <?php the_title();?></a></h5>
         <?php
 
 the_content(
@@ -29,6 +29,6 @@ the_content(
 
 );
 ?>
-        <p> <a href="#" class="bookNow">BOOK NOW</a></p>
+        <p> <a href="<?php the_permalink()?>" class="bookNow"><?php _e('Read More', 'sidney-2021')?> &rarr;</a></p>
     </div><!-- .entry-content -->
 </div><!-- #post-<?php the_ID();?> -->
