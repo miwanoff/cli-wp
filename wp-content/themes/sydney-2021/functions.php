@@ -176,3 +176,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Include the TGM_Plugin_Activation class.
+ */
+require_once dirname(__FILE__) . '/tgm/class-tgm-plugin-activation.php';
