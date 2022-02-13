@@ -24,7 +24,7 @@ function sydney_2021_register_required_plugins()
         array(
             'name' => esc_html__('Unyson'),
             'slug' => 'unyson',
-            'source' => get_template_directory() . '/plugins/unyson.zip',
+            'source' => get_template_directory() . '/assets/plugins/unyson.zip',
             'required' => true,
         ),
 
