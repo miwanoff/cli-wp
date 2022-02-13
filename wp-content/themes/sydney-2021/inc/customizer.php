@@ -64,6 +64,10 @@ function sydney_2021_customize_preview_js()
 }
 add_action('customize_preview_init', 'sydney_2021_customize_preview_js');
 
+/**
+ * Kirki сustomizer.
+ */
+
 if (!class_exists('Kirki')) {
     return;
 }
