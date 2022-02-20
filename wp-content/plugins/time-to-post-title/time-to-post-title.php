@@ -5,6 +5,7 @@ Plugin URI: https://example.com/
 Version: 1.0
 Author: M.A.I.
 Author URI: https://example.com/
+Text Domain: time-to-post-title
 License: GPL2
  */
 
