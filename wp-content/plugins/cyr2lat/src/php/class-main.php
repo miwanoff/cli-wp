@@ -116,6 +116,13 @@ class Main {
 	protected $wpml_languages;
 
 	/**
+	 * Current request is frontend.
+	 *
+	 * @var bool|null
+	 */
+	protected $is_frontend;
+
+	/**
 	 * Main constructor.
 	 */
 	public function __construct() {
@@ -142,7 +149,8 @@ class Main {
 			$this->cli = new WP_CLI( $this->converter );
 		}
 
-		$this->acf = new ACF( $this->settings );
+		$this->acf         = new ACF( $this->settings );
+		$this->is_frontend = $this->request->is_frontend();
 	}
 
 	/**
@@ -176,7 +184,7 @@ class Main {
 		add_filter( 'wp_insert_post_data', [ $this, 'sanitize_post_name' ], 10, 2 );
 		add_filter( 'pre_insert_term', [ $this, 'pre_insert_term_filter' ], PHP_INT_MAX, 2 );
 
-		if ( ! $this->request->is_frontend() ) {
+		if ( ! $this->is_frontend || class_exists( SitePress::class ) ) {
 			add_filter( 'get_terms_args', [ $this, 'get_terms_args_filter' ], PHP_INT_MAX, 2 );
 		}
 
@@ -224,8 +232,15 @@ class Main {
 			return $pre;
 		}
 
-		$term = '';
 		if ( $this->is_term ) {
+			// Make sure we search in the db only once being called from wp_insert_term().
+			$this->is_term = false;
+
+			// Fix case when showing previously created categories in cyrillic with WPML.
+			if ( $this->is_frontend && class_exists( SitePress::class ) ) {
+				return $title;
+			}
+
 			$sql = $wpdb->prepare(
 				"SELECT slug FROM $wpdb->terms t LEFT JOIN $wpdb->term_taxonomy tt
 							ON t.term_id = tt.term_id
@@ -242,17 +257,12 @@ class Main {
 			$term = $wpdb->get_var( $sql );
 			// phpcs:enable WordPress.DB.PreparedSQL.NotPrepared
 
-			// Make sure we search in the db only once being called from wp_insert_term().
-			$this->is_term = false;
+			if ( ! empty( $term ) ) {
+				return $term;
+			}
 		}
 
-		if ( ! empty( $term ) ) {
-			$title = $term;
-		} else {
-			$title = $this->is_wc_attribute_taxonomy( $title ) ? $title : $this->transliterate( $title );
-		}
-
-		return $title;
+		return $this->is_wc_attribute_taxonomy( $title ) ? $title : $this->transliterate( $title );
 	}
 
 	/**
@@ -509,6 +519,10 @@ class Main {
 			return $locale;
 		}
 
+		if ( ! $this->request->is_post() ) {
+			return $locale;
+		}
+
 		$pll_get_post_language = $this->pll_locale_filter_with_classic_editor();
 		if ( $pll_get_post_language ) {
 			$this->pll_locale = $pll_get_post_language;
@@ -561,19 +575,19 @@ class Main {
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_POST['post_ID'] ) ) {
 			$pll_get_post_language = pll_get_post_language(
-				(int) filter_input( INPUT_POST, 'post_ID', FILTER_SANITIZE_STRING ),
+				(int) filter_input( INPUT_POST, 'post_ID', FILTER_SANITIZE_FULL_SPECIAL_CHARS ),
 				'locale'
 			);
 		}
 		if ( isset( $_POST['pll_post_id'] ) ) {
 			$pll_get_post_language = pll_get_post_language(
-				(int) filter_input( INPUT_POST, 'pll_post_id', FILTER_SANITIZE_STRING ),
+				(int) filter_input( INPUT_POST, 'pll_post_id', FILTER_SANITIZE_FULL_SPECIAL_CHARS ),
 				'locale'
 			);
 		}
 		if ( isset( $_GET['post'] ) ) {
 			$pll_get_post_language = pll_get_post_language(
-				(int) filter_input( INPUT_GET, 'post', FILTER_SANITIZE_STRING ),
+				(int) filter_input( INPUT_GET, 'post', FILTER_SANITIZE_FULL_SPECIAL_CHARS ),
 				'locale'
 			);
 		}
@@ -598,7 +612,7 @@ class Main {
 		// phpcs:disable WordPress.Security.NonceVerification.Missing
 		if ( isset( $_POST['term_lang_choice'] ) ) {
 			$pll_get_language = PLL()->model->get_language(
-				filter_input( INPUT_POST, 'term_lang_choice', FILTER_SANITIZE_STRING )
+				filter_input( INPUT_POST, 'term_lang_choice', FILTER_SANITIZE_FULL_SPECIAL_CHARS )
 			);
 
 			if ( $pll_get_language ) {

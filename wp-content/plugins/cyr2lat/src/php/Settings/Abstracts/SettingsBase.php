@@ -456,7 +456,7 @@ abstract class SettingsBase {
 	 * @return bool
 	 */
 	protected function is_tab_active( $tab ) {
-		$current_tab_name = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_STRING );
+		$current_tab_name = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
 		if ( null === $current_tab_name && ! $tab->is_tab() ) {
 			return true;
@@ -968,6 +968,10 @@ abstract class SettingsBase {
 	 * @return bool
 	 */
 	protected function is_options_screen() {
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			return false;
+		}
+
 		$current_screen = get_current_screen();
 
 		$screen_id = $this->screen_id();
