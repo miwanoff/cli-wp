@@ -1,6 +1,7 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
+        <?php echo do_shortcode('[breadcrumbs]'); ?>
         <p class="m-0 text-center text-white"><?php echo get_theme_mod('bootkit_footer_copyright_text'); ?> </p>
         <!-- Top Social ============================================= -->
         <div id="top-social" class="text-center ">
