@@ -1,0 +1,87 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: bootkit\n"
+"POT-Creation-Date: 2022-02-20 15:24+0200\n"
+"PO-Revision-Date: 2022-02-20 15:31+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: comments.php:16
+msgid "Name"
+msgstr "Имя"
+
+#: comments.php:21 includes/customizer/social.php:45
+msgid "Email"
+msgstr "Email"
+
+#: comments.php:26
+msgid "Website"
+msgstr "Веб-сайт"
+
+#: comments.php:31
+msgid "Submit Comment"
+msgstr "Отправить комментарий"
+
+#: full-width.php:52 left-column.php:52 mini_news.php:14 page.php:46
+#: single.php:52
+msgid "Pages:"
+msgstr "Страницы:"
+
+#: inc/customizer/sections/general.php:19
+#: inc/customizer/sections/general.php:89
+msgid "Border"
+msgstr ""
+
+#: inc/customizer/sections/general.php:106
+msgid "Text in box"
+msgstr ""
+
+#: includes/customizer/misc.php:5
+msgid "Bootkit Additional Settings"
+msgstr ""
+
+#: includes/customizer/misc.php:15
+msgid "Show Search Button in Header"
+msgstr ""
+
+#: includes/customizer/social.php:5
+msgid "Bootkit Social Settings"
+msgstr "Bootkit Социальные ссылки"
+
+#: includes/customizer/social.php:15
+msgid "Facebook"
+msgstr ""
+
+#: includes/customizer/social.php:28
+msgid "Instagram"
+msgstr ""
+
+#: includes/customizer/social.php:55
+msgid "Phone Number"
+msgstr "Номер телефона"
+
+#: includes/setup.php:4
+msgid "Primary Menu"
+msgstr "Главное меню"
+
+#: includes/widgets.php:5
+msgid "Bootkit first Sidebar"
+msgstr ""
+
+#: includes/widgets.php:7
+msgid "Bootkit first Sidebar for something."
+msgstr "Bootkit первый сайдбар"
+
+#: partials/posts/content-excerpt.php:14
+msgid "Read More"
+msgstr "Читать далее"

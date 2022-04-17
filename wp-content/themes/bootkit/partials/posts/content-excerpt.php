@@ -11,7 +11,8 @@ if (has_post_thumbnail()) {
                     <h2 class="card-title"><a href="<?php the_permalink()?>"><?php the_title()?></a></h2>
                     <p>Post category: <?php the_category(" ")?></p>
                     <p class="card-text"><?php the_excerpt()?></p>
-                    <a href="<?php the_permalink()?>" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="<?php the_permalink()?>" class="btn btn-primary"><?php _e("Read More", "bootkit");?>
+                        &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">
                     Posted on <?php echo get_the_date() ?> by
