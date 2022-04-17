@@ -25,3 +25,15 @@ add_action('init', 'movie_custom_fields');
 add_action('customize_register', 'bootkit_customize_register');
 
 // Shortcodes
+
+function site_url_shortcode($atts)
+{
+    return site_url();
+}
+add_shortcode('myurl', 'site_url_shortcode');
+
+function time_shortcode($atts)
+{
+    return time_to_post_content($content);
+}
+add_shortcode('time_to_post', 'time_shortcode');
