@@ -23,7 +23,8 @@ add_action('init', 'bootkit_taxonomies');
 add_action('init', 'bootkit_register_post_type_init');
 add_action('init', 'movie_custom_fields');
 add_action('customize_register', 'bootkit_customize_register');
-
+add_action('wp_ajax_bootkit', 'bootkit_ajax');
+add_action('wp_ajax_nopriv_bootkit', 'bootkit_ajax');
 // Shortcodes
 
 function site_url_shortcode($atts)
@@ -37,3 +38,11 @@ function time_shortcode($atts)
     return time_to_post_content($content);
 }
 add_shortcode('time_to_post', 'time_shortcode');
+
+//-----Odds&ends----------
+function bootkit_ajax()
+{
+    $summa = $_POST['param1'] + $_POST['param2'];
+    echo $summa;
+    die;
+}
