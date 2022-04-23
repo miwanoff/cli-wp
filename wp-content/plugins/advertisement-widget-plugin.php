@@ -44,7 +44,7 @@ class Advertisement_Widget extends WP_Widget
             echo $before_title . $title . $after_title;
         }
         ?>
-<?php echo '<a href="' . $link . '" target="_blank"><img src=' . $message . " '/>"; ?></a>
+<?php echo '<a href="' . $link . '" target="_blank"><img src=' . $message . " ' style=\"margin-top:20px;\"/>"; ?></a>
 <?php echo $after_widget; ?>
 <?php
 }
