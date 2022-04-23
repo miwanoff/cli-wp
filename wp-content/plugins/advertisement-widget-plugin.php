@@ -75,9 +75,11 @@ class Advertisement_Widget extends WP_Widget
 
 
 
-<p><label for="<?php echo $this->get_field_id('src'); ?>"><?php _e('Advertisement Banner');?></label>
-    <textarea rows="4" cols="50" class="widefat" id="<?php echo $this->get_field_id('src'); ?>"
-        name="<?php echo $this->get_field_name('src'); ?>"><?php echo ($src); ?> </textarea>
+<p><label for="<?php echo $this->get_field_id('src'); ?>"><?php _e('Advertisement Banner src');?></label>
+
+    <input class="widefat" id="<?php echo $this->get_field_id('src'); ?>"
+        name="<?php echo $this->get_field_name('src'); ?>" type="text" value="<?php echo $src; ?>" />
+
 </p>
 
 <label for="<?php echo $this->get_field_id('link'); ?>"><?php _e('Ads Link');?></label>
