@@ -40,16 +40,16 @@ add_action('wp_enqueue_scripts', 'bootkit_load_more_scripts');
 function bootkit_load_posts()
 {
     $args = unserialize(stripslashes($_POST['query'])); // запрос от скрипта
-    $args['paged'] = $_POST['page']; // номер страницы
+    $args['paged'] = $_POST['page'] + 1; // номер страницы
     $args['post_status'] = 'publish'; // только опубликованные
-    $args['posts_per_page'] = 2; // сколько постов на странице (подгружать по 2)
+    $args['posts_per_page'] = get_option('posts_per_page'); // сколько постов на странице (подгружать по 2)
     // определяем, какие посты будут показаны в базовом цикле WordPress
     query_posts($args);
     if (have_posts()) {
         while (have_posts()) {
             the_post();
-           // echo the_title();
-           include "templates/template.php";
+            // echo the_title();
+            include "templates/template.php";
         }
     }
     die();
