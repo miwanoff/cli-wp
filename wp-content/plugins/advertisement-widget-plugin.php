@@ -27,6 +27,7 @@ class Advertisement_Widget extends WP_Widget
         $instance = $old_instance;
         $instance['title'] = $new_instance['title'];
         $instance['src'] = $new_instance['src'];
+        $instance['description'] = $new_instance['description'];
         $instance['link'] = $new_instance['link'];
         return $instance;
     }
@@ -37,11 +38,16 @@ class Advertisement_Widget extends WP_Widget
         extract($args);
         $title = apply_filters('widget_title', $instance['title']);
         $src = $instance['src'];
+        $description = $instance['description'];
         $link = $instance['link'];
         ?>
 <?php echo $before_widget; ?>
 <?php if ($title) {
             echo $before_title . $title . $after_title;
+        }
+
+        if ($description) {
+            echo "<h4 class='desc'>" . $description . "</h4>";
         }
         ?>
 <?php echo '<a href="' . $link . '" target="_blank"><img src=' . $src . " ' style=\"margin-top:20px;\"/>"; ?></a>
@@ -55,15 +61,25 @@ class Advertisement_Widget extends WP_Widget
         $instance = wp_parse_args((array) $instance, array('title' => ''));
         $title = $instance['title'];
         $src = esc_attr($instance['src']);
+        $description = esc_attr($instance['description']);
         $link = esc_attr($instance['link']);
         ?>
 <p><label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat"
             id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>"
             type="text" value="<?php echo attribute_escape($title); ?>" /></label></p>
+
+<p><label for="<?php echo $this->get_field_id('description'); ?>"><?php _e('Description');?></label>
+    <textarea rows="4" cols="50" class="widefat" id="<?php echo $this->get_field_id('description'); ?>"
+        name="<?php echo $this->get_field_name('description'); ?>"><?php echo ($description); ?> </textarea>
+</p>
+
+
+
 <p><label for="<?php echo $this->get_field_id('src'); ?>"><?php _e('Advertisement Banner');?></label>
     <textarea rows="4" cols="50" class="widefat" id="<?php echo $this->get_field_id('src'); ?>"
         name="<?php echo $this->get_field_name('src'); ?>"><?php echo ($src); ?> </textarea>
 </p>
+
 <label for="<?php echo $this->get_field_id('link'); ?>"><?php _e('Ads Link');?></label>
 <input class="widefat" id="<?php echo $this->get_field_id('link'); ?>"
     name="<?php echo $this->get_field_name('link'); ?>" type="text" value="<?php echo $link; ?>" />
