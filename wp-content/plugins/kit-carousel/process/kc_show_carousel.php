@@ -23,8 +23,8 @@ function kc_show_carousel($content)
             <div class="owl-carousel owl-theme">';
         while ($query->have_posts()) {
             $query->the_post();
-            $html .= '<div class="item"><h5>';
-            $html .= '<a href="' . get_permalink($query->post->ID) . '">' . $query->post->post_title . '</a>';
+            $html .= '<div class="item" style="background:url(' . get_the_post_thumbnail_url($query->post->ID, 'thumbnail') . '); background-size:cover;"><h5>';
+            $html .= '<a href="' . get_permalink($query->post->ID) . '" style="color: white;text-decoration: none;">' . $query->post->post_title . '</a>';
             $html .= '</h5></div>';
         }
         $html .= ' </div>
@@ -32,6 +32,6 @@ function kc_show_carousel($content)
 </div>
 </section>';
     }
-
+    wp_reset_postdata();
     return $content . $html;
 }
