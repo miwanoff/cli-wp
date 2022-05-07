@@ -4,7 +4,7 @@ function kc_show_carousel($content)
 {
     $args = [
         'post_type' => 'post',
-        'showposts' => 6,
+        'showposts' => get_option('kc_count'),
         //'category_name' => 'cooking',
         //'post_type' => 'recipe',
         // 'post_type' => 'movies',
