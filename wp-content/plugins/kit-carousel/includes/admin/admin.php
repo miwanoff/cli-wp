@@ -18,7 +18,14 @@ function register_mysettings()
 }
 function kc_settings_page()
 {
+    $kc_post_types = get_post_types(['public' => true]);
+    unset($kc_post_types['attachment']);
+    $kc_categories = get_categories([
+        'taxonomy' => 'category']);
+    $kc_categories["empty"]["name"] = "";
     ?>
+
+?>
 <div class="wrap">
     <h2>Kit Carousel</h2>
     <form method="post" action="options.php">
@@ -26,12 +33,27 @@ function kc_settings_page()
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">Post Type</th>
-                <td><input type="text" name="kc_post_type" value="<?php echo get_option('kc_post_type'); ?>" />
+                <td>
+                    <select name="kc_post_type" id="kc_post_type">
+                        <?php foreach ($kc_post_types as $kc_post_type) {
+        echo '<option value="' . $kc_post_type . '" ' . selected(get_option('kc_post_type'), $kc_post_type) . '>' . $kc_post_type . '</option>';
+    }
+    ?>
+                    </select>
+
                 </td>
             </tr>
             <tr valign="top">
                 <th scope="row">Category Name</th>
-                <td><input type="text" name="kc_category_name" value="<?php echo get_option('kc_category_name'); ?>" />
+                <td>
+                    <select name="kc_category_name" id="kc_category_name">
+
+                        <?php foreach ($kc_categories as $kc_category) {
+        echo '<option value="' . $kc_category->name . '" ' . selected(get_option('kc_category_name'), $kc_category->name) . '>' . ($kc_category->name ? $kc_category->name : "none") . '</option>';
+    }
+    ?>
+                    </select>
+
                 </td>
             </tr>
             <tr valign="top">
