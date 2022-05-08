@@ -22,8 +22,12 @@ define('RP_PLUGIN_URL', __FILE__);
 // Includes
 include dirname(RP_PLUGIN_URL) . '/includes/widgets.php';
 include dirname(RP_PLUGIN_URL) . '/includes/widgets/daily-post.php';
+include dirname(RP_PLUGIN_URL) . '/includes/cron.php';
+include dirname(RP_PLUGIN_URL) . '/includes/deactivate.php';
+include dirname(RP_PLUGIN_URL) . '/includes/utility.php';
 
 // Hooks
 add_action('widgets_init', 'r_widgets_init');
+add_action('r_daily_post_hook', 'r_daily_generate_post');
 
 // Shortcodes
