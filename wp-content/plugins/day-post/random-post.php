@@ -17,6 +17,7 @@ if (!function_exists('add_action')) {
 }
 
 // Setup
+define('RP_PLUGIN_URL', __FILE__);
 
 // Includes
 
