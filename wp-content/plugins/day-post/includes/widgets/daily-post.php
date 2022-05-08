@@ -21,7 +21,35 @@ class R_Daily_Post_Widget extends WP_Widget
     public function widget($args, $instance)
     {
         // outputs the content of the widget
-        echo 'Post of the day';
+        //echo 'Post of the day';
+        // outputs the content of the widget
+        extract($args);
+        extract($instance);
+        $title = apply_filters('widget_title', $title);
+        echo $before_widget;
+        echo $before_title . $title . $after_title;
+        $post_id = get_transient('r_daily_post');
+        if (!$post_id) {
+            $post_id = r_get_random_post();
+            set_transient(
+                'r_daily_post',
+                $post_id,
+                DAY_IN_SECONDS
+            );
+        }
+        ?>
+<div class="post-image">
+    <a href="<?php echo get_permalink($post_id); ?>">
+        <?php echo get_the_post_thumbnail($post_id, 'thumbnail'); ?>
+    </a>
+</div>
+<div class="post-desc center nobottompadding">
+    <h4 class="mb-4"><a href="<?php echo get_permalink($post_id); ?>">
+            <?php echo get_the_title($post_id); ?>
+        </a></h3>
+</div>
+<?php
+echo $after_widget;
     }
 
     /**
